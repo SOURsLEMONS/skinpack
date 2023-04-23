@@ -1,6 +1,6 @@
 # 基于 Vue 3 的纯前端我的世界基岩版皮肤包生成器
 
-已部署在 [https://skin.slemons.cn](skin.slemons.cn)
+已部署在 [https://skin.slemons.cn](https://skin.slemons.cn)
 
 ## 介绍
 
@@ -8,7 +8,7 @@
 
 ## 使用
 
-1. 在 [https://skin.slemons.cn](skin.slemons.cn) 中输入上传你的皮肤图片
+1. 在 [https://skin.slemons.cn](https://skin.slemons.cn) 中输入上传你的皮肤图片
 2. 设置你的皮肤名称（你也可以不设置，不设置的话会自动生成名字）
 3. 设置你的皮肤皮肤包的名字（你也可以不设置，不设置的话会自动生成名字）
 4. 点击生成按钮，好了大功告成
