@@ -4,7 +4,7 @@ import { SkinViewer } from "skinview3d";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 
-var loaders=true
+var loaders = true
 
 var steve =
     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAe1BMVEUAAACsdloAaGgAf38ApKQAr68AzMwElZUFiIgKvLwjIyMkGAgmGgomJCQoKCgrHg0zJBE0JRI6MYk/KhU/Pz9BIQxBNZtCHQpFIg5GOqVKSkpSKCZSPYlqQDBra2t1Ry+BUzmGUzSKTD2iakesdlqze2K9i3LGloD///+tRwrWAAAAAnRSTlMAAHaTzTgAAALLSURBVFjD7ZZhf5owEMZtTQSXdWRAmbBitTG03/8T7rm7xIrOEenLeYJJ+Hl/755E7xaLYEVhcdniNdjiVitshQuAft/v93MAcKbXa/8N1s+JAAngng8oJInZAEsaFlUA/J4BqDgHpMA2RwNLOt6+jbz5ht4rGAhYUDp0LDArUtQvjLHWEMHSyxg5VBU9r5Jy5xPk/DB495PXFW0oka2djoAixnfC/X0Agr0kDU4k6QAVzpnh42UYXj7ejXP8yBoG2ZT9t8YPHlffy2g4fkhBckwCTGEke//89rY5yBwPCVCkAJxz3nvndu7512aDQZZ48B22c0lnoYT9gD08yHolZ2lVBoufU1orCD1cBcT1So7zBUAzwLv5gHVqBFdS+GsETVM2bdvSQGOZkSl3ODjFU62h606TKQURljBafALKEaBlf5U5R+9CI9for5aPj0tanwDEcQTQSuf4MEeglAr+/MYAjFcBOQxxa9yZTMVzGewRRuMlABMSLAtu+GqacAIE8GKODZMxoCxb0kIAICBoSED+RwD9Ugc58360lQygK6YAAImAIPKgIYmQeQF4BuA62cZLDSAgAtAUS9gDBpARwI0jYEDTRBB/a65IfpaD9wBTjp8A/gzQdQ3n3jRd1223HUeQA6F1AFAyeTYIgAkjQA2/etvxgLuTzQAUUeQ0QRaYtALwAvAngKe6rp+6jgfcNWlBObVNnosuYCE1ElE0dIxY3O2/tLUY/7Joclfkbsn9wmRfcANAO/8lwFp/NQKVHIH0Cw2X+xJ/ptIPcIHVo7L+b0Dbhr6hpXIeOgQu80mA2HEcAerYoNwOiP1ANC5160+7BEhhOfYL3BN4LspcF6cj4LpWngBcqOxiaSlwyyAphIZgCIUxDVC2UvAJ4GJLEspzAuB4EgIg1HOfCDjvF6J/FGEScN4vxH4gyjAJOO8XpCEg+aQ/OP/8HwWygi0ive6eAAAAAElFTkSuQmCC";
@@ -62,7 +62,7 @@ function lang(lang) {
     str = str + skins.localization_name + "=" + lang.skinpack + "\n";
     for (var i = 0; i < skins.skins.length; i++) {
         str += 'skin.' + skins.localization_name + "." + skins.skins[i].localization_name + "=" + lang.skinlist[i].name + "\n";
-        // console.log(lang.skinlist[i]);
+        // //console.log(lang.skinlist[i]);
     }
     return str;
 }
@@ -86,44 +86,43 @@ export default {
             skinlistindex: 0,
             skinname: '',
             skinmodel: false,
-            loaders:true
+            loaders: true
         };
     },
     methods: {
         //这是上传图片的方法
         upload: function (e) {
             var that = this;
-            console.log(e.target.files[0]);
+            //console.log(e.target.files[0]);
             //获取图片大小
             let file = e.target.files[0];
             let reader = new FileReader();
             reader.readAsDataURL(file);
             let img = new Image();
             reader.onload = function (e) {
-                console.log(e.target.result);
+                //console.log(e.target.result);
                 img.src = e.target.result;
                 img.onload = function () {
-                    console.log(img.width);
-                    console.log(img.height);
+                    //console.log(img.width);
+                    //console.log(img.height);
                     if (
-                        (img.width != 64 && img.height != 32) ||
-                        (img.height != 64 && img.width != 32)
+                        img.width != img.height && (img.width != 128 ||img.width != 64 || img.width != 32)
                     ) {
-                        alert("图片尺寸不正确，请上传64*64的图片");
+                        alert("图片尺寸不正确，请上传128 64 32的图片");
                         return;
                     }
                     //这里ulr
                     this.ulr = e.target.result;
-                    console.log(this.ulr);
+                    //console.log(this.ulr);
 
                     skinViewer.loadSkin(this.ulr);
-                    console.log(skinViewer.loadSkin(this.ulr));
+                    //console.log(skinViewer.loadSkin(this.ulr));
                     skinViewer.autoRotate = true;
                     setTimeout(() => {
                         skinViewer.autoRotate = false;
                     }, 6280);
 
-                    // console.log(skinViewer.playerObject.skin.modelType);
+                    // //console.log(skinViewer.playerObject.skin.modelType);
 
                     that.skinlistindex = that.skinlist.push({
                         name: "皮肤" + (skinlist.length + 1),
@@ -142,22 +141,22 @@ export default {
                 this.skinlist[this.skinlistindex].name = this.skinname;
                 this.skinlistindex += n;
                 this.skinname = this.skinlist[this.skinlistindex].name;
-                console.log(this.skinname);
+                //console.log(this.skinname);
             }
 
 
             if (skinlist[this.skinlistindex].slim) {
-                console.log(skinlist[this.skinlistindex].slim);
+                //console.log(skinlist[this.skinlistindex].slim);
                 skinViewer.loadSkin(skinlist[this.skinlistindex].src, { model: "slim" });
                 this.skinmodel = true;
             } else {
                 skinViewer.loadSkin(skinlist[this.skinlistindex].src, { model: "default" });
                 this.skinmodel = false;
-                console.log(skinlist[this.skinlistindex].slim);
+                //console.log(skinlist[this.skinlistindex].slim);
             }
-            console.log(skinlist[this.skinlistindex].slim);
-            console.log(this.skinlistindex);
-            console.log(this.skinmodel);
+            //console.log(skinlist[this.skinlistindex].slim);
+            //console.log(this.skinlistindex);
+            //console.log(this.skinmodel);
 
             //model
         },
@@ -169,8 +168,8 @@ export default {
                 this.skinmodel = false;
             } else {
                 skinViewer.loadSkin(url, { model: "slim" });
-                console.log(this.skinlistindex);
-                console.log(this.skinlist[this.skinlistindex]);
+                //console.log(this.skinlistindex);
+                //console.log(this.skinlist[this.skinlistindex]);
                 this.skinlist[this.skinlistindex].slim = true;
                 this.skinmodel = true;
             }
@@ -198,10 +197,10 @@ export default {
         },
         //生成皮肤包
         spawnpack: function () {
-            this.loaders= true;
+            this.loaders = true;
             var that = this;
             this.skinlist[this.skinlistindex].name = this.skinname;
-            // console.log(this.skinlist);
+            // //console.log(this.skinlist);
 
             var manifest = {
                 header: {
@@ -238,10 +237,10 @@ export default {
                 }
                 return arr;
             }();
-            console.log(JSON.stringify(skins, null, 4));
+            //console.log(JSON.stringify(skins, null, 4));
 
             manifest.header.name = this.skinpackname;
-            console.log(JSON.stringify(manifest, null, 4));
+            //console.log(JSON.stringify(manifest, null, 4));
 
             zh_CN.skinpack = this.skinpackname;
             zh_CN.skinlist = function () {
@@ -254,7 +253,7 @@ export default {
                 return arr;
             }();
 
-            console.log(lang(zh_CN));
+            //console.log(lang(zh_CN));
 
 
             var zip = new JSZip();
@@ -283,11 +282,11 @@ export default {
             skin: steve,
         });
         this.loaders = false;
-        // console.log(this);
+        // //console.log(this);
         // this.skinmodel = false;
     },
 };
-// console.log(Vue);
+// //console.log(Vue);
 </script>
 <template>
     <div class="loaders" v-if="loaders">
@@ -346,7 +345,6 @@ export default {
 </template>
 
 <style scoped>
-
 .loaders {
     position: fixed;
     top: 0;

@@ -29,7 +29,7 @@ import sk from './components/skin.vue'
 }
 
 #box1 {
-  height: 20px;
+  height: 50px;
   width: 100%;
   background-color: #17161500;
 }
