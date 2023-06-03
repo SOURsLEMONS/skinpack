@@ -603,7 +603,7 @@ export default {
 .mcbutton .upimg {
     position: relative;
     z-index: 5;
-    transform: translate(-50%, 0%);
+    transform: translate(-50%, 0%) scale(1.8);
 }
 
 .mcbutton {
