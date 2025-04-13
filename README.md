@@ -1,6 +1,6 @@
 # 基于 Vue 3 的纯前端我的世界基岩版皮肤包生成器
 
-已部署在 [https://skin.slemons.cn](https://skin.slemons.cn)
+已部署在 [https://skin.suanlemon.cc]( https://skin.suanlemon.cc)
 
 ## 介绍
 
